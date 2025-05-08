@@ -89,14 +89,3 @@ library(tidyverse)
   rm(i, data, n, counts_raw, input, output, samplesin, samplesout)
 }
 
-##### count aligned and unaligned reads per sample #####
-
-data = read.table("counts_raw_summed.txt", header=T, row.names = 1)
-samples = colnames(data)
-total = colSums(data)
-unaligned = colSums(data[(1:5),])
-aligned = colSums(data[-(1:5),])
-
-write.table(t(rbind(total, unaligned, aligned)), file = "counts_alignment_rate.txt", quote=F)
-
-rm(data, samples, total, unaligned, aligned)
